@@ -10,8 +10,7 @@ steps:
   #     template: >
   #         {{build.event}} to `{{ lowercase build.branch }}` by *{{ build.author }}* -> {{ build.link }}
 
-  - name: lint
-    group: lint
+  - name: lint & tests
     image: node:latest
     commands:
     - npm i --silent
@@ -22,7 +21,6 @@ steps:
       branch: master
 
   - name: build
-    group: lint
     image: node:latest
     commands:
     - npm i --silent
