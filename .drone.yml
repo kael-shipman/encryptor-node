@@ -16,6 +16,7 @@ steps:
     commands:
     - npm i --silent
     - npm run lint
+    - npm run test
     when:
       event: [ pull_request ]
       branch: master
