@@ -13,7 +13,7 @@ npm install --save encryptor-node
 ## Encrypting and decrypting a message or object
 
 ```ts
-import Encryptor from 'encryptor-node';
+import { Encryptor } from 'encryptor-node';
 
 const secret = 's3cr3t!';
 const obj = {
