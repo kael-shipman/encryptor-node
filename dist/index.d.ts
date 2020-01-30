@@ -1,5 +1,2 @@
 import Encryptor from './Encryptor';
-
-export {
-  Encryptor,
-};
+export { Encryptor, };

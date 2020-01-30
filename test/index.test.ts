@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import Encryptor from '../src/Encryptor';
+import { Encryptor } from '../dist';
 
 // TODO
 describe('Testing Encryptions', async () => {
