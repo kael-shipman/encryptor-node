@@ -1,6 +1,12 @@
 # Encryptor
 Library for encrypt and decrypt messages using a secret key.
 
+## Installation
+
+```sh
+npm install --save encryptor-node
+```
+
 ## Encrypting and decrypting a message or object
 
 ```ts
