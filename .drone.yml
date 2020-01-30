@@ -2,13 +2,13 @@ kind: pipeline
 name: encryptor-node-ci
 
 steps:
-  - name: slack-build-start
-    image: plugins/slack
-    settings:
-      webhook: https://hooks.slack.com/services/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
-      channel: encryptor
-      template: >
-          {{build.event}} to `{{ lowercase build.branch }}` by *{{ build.author }}* -> {{ build.link }}
+  # - name: slack-build-start
+  #   image: plugins/slack
+  #   settings:
+  #     webhook: https://hooks.slack.com/services/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
+  #     channel: encryptor
+  #     template: >
+  #         {{build.event}} to `{{ lowercase build.branch }}` by *{{ build.author }}* -> {{ build.link }}
 
   - name: lint
     group: lint
@@ -43,17 +43,17 @@ steps:
       event: push
       branch: master
 
-  - name: slack-build-finished
-    image: plugins/slack
-    settings:
-      webhook: https://hooks.slack.com/services/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
-      channel: encryptor
-      template: >
-        {{#success build.status}}
-          {{build.event}} to `{{ lowercase build.branch }}` succeeded. Good job *{{ build.author }}*.
-        {{else}}
-          {{build.event}} to `{{ lowercase build.branch }}` failed. Please by *{{ build.author }}* fix me -> {{ build.link }}
-        {{/success}}
-    when:
-      event: [ push, pull_request ]
-      branch: master
+  # - name: slack-build-finished
+  #   image: plugins/slack
+  #   settings:
+  #     webhook: https://hooks.slack.com/services/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
+  #     channel: encryptor
+  #     template: >
+  #       {{#success build.status}}
+  #         {{build.event}} to `{{ lowercase build.branch }}` succeeded. Good job *{{ build.author }}*.
+  #       {{else}}
+  #         {{build.event}} to `{{ lowercase build.branch }}` failed. Please by *{{ build.author }}* fix me -> {{ build.link }}
+  #       {{/success}}
+  #   when:
+  #     event: [ push, pull_request ]
+  #     branch: master
