@@ -1,1 +1,5 @@
-export * from './Encryptor';
+import Encryptor from './Encryptor';
+
+export {
+  Encryptor,
+};
