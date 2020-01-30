@@ -5,7 +5,7 @@ steps:
   - name: slack-build-start
     image: plugins/slack
     settings:
-      webhook: https://hooks.slack.com/services/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
+      webhook: https://hooks.slack.com/services/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
       channel: encryptor
       template: >
           {{build.event}} to `{{ lowercase build.branch }}` by *{{ build.author }}* -> {{ build.link }}
@@ -46,7 +46,7 @@ steps:
   - name: slack-build-finished
     image: plugins/slack
     settings:
-      webhook: https://hooks.slack.com/services/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
+      webhook: https://hooks.slack.com/services/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
       channel: encryptor
       template: >
         {{#success build.status}}
