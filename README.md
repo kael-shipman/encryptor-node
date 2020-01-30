@@ -1,4 +1,7 @@
 # Encryptor
+
+[![Build Status](http://cloud.drone.io/api/badges/cavillo/encryptor-node/status.svg)](http://cloud.drone.io/cavillo/encryptor-node)
+
 Library for encrypt and decrypt messages using a secret key.
 
 ## Installation
