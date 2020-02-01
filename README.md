@@ -10,20 +10,30 @@ Library for encrypt and decrypt messages using a secret key.
 npm install --save encryptor-node
 ```
 
+## Import methods
+
+```ts
+// As a hole
+import * as Encryptor from 'encryptor-node';
+
+// Each method
+import { encrypt, decrypt } from 'encryptor-node';
+```
+
+
 ## Encrypting and decrypting a message or object
 
 ```ts
-import { Encryptor } from 'encryptor-node';
+import { encrypt, decrypt } from 'encryptor-node';
 
 const secret = 's3cr3t!';
-const obj = {
-  message: 'This is an very important message',
-};
-const encryptor = new Encryptor();
+const payload = { message: 'This is an very important message' };
 
 // Encrypting
-const encrypted = safe.encrypt(secret, obj);
+const encrypted = encrypt(secret, payload);
+console.log(encrypted); // e20f64009fe0daa88......
 
 // Decrypting
-const result = safe.decrypt(secret, encrypted);
+const result = decrypt(secret, encrypted);
+console.log(result); // { message: 'This is an very important message' }
 ```
