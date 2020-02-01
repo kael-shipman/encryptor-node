@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { Encryptor } from '../dist';
+import { encrypt, decrypt } from '../dist';
 
 // TODO
 describe('Testing Encryptions', async () => {
@@ -10,13 +10,12 @@ describe('Testing Encryptions', async () => {
     const obj = {
       message: 'This is an very important message',
     };
-    const safe = new Encryptor();
 
     // Encrypting
-    const encrypted = safe.encrypt(secret, obj);
+    const encrypted = encrypt(secret, obj);
 
     // Decrypting
-    const result = safe.decrypt(secret, encrypted);
+    const result = decrypt(secret, encrypted);
 
     expect(result).to.have.property('message');
     expect(obj.message).to.equal(result.message);
@@ -28,14 +27,13 @@ describe('Testing Encryptions', async () => {
     const obj = {
       message: 'This is an very important message',
     };
-    const safe = new Encryptor();
 
     // Encrypting
-    const encrypted = safe.encrypt(secret, obj);
+    const encrypted = encrypt(secret, obj);
 
     // Decrypting
     expect(() => {
-      safe.decrypt(secret2, encrypted);
+      decrypt(secret2, encrypted);
     }).to.throw();
   });
 
@@ -44,13 +42,12 @@ describe('Testing Encryptions', async () => {
     const obj = {
       message: 'This is an very important message',
     };
-    const safe = new Encryptor();
 
     // Encrypting
-    const encrypted = safe.encrypt(secret, obj);
+    const encrypted = encrypt(secret, obj);
 
     // Encrypting
-    const encrypted2 = safe.encrypt(secret, obj);
+    const encrypted2 = encrypt(secret, obj);
 
     expect(encrypted).to.not.equal(encrypted2);
   });
