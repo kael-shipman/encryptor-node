@@ -27,7 +27,7 @@ export const encrypt = (secret: string, data: any): string => {
   }
 };
 
-export const decrypt = (secret: string, data: string): any => {
+export const decrypt = <T = unknown>(secret: string, data: string): T => {
   try {
     const decipher = crypto.createDecipher(ALGORITHM, secret);
     const decrypted = Buffer.concat([decipher.update(new Buffer(data, 'hex')), decipher.final()]);

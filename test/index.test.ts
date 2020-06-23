@@ -15,7 +15,7 @@ describe('Testing Encryptions', async () => {
     const encrypted = encrypt(secret, obj);
 
     // Decrypting
-    const result = decrypt(secret, encrypted);
+    const result = decrypt<{ message: string; }>(secret, encrypted);
 
     expect(result).to.have.property('message');
     expect(obj.message).to.equal(result.message);
@@ -33,7 +33,7 @@ describe('Testing Encryptions', async () => {
 
     // Decrypting
     expect(() => {
-      decrypt(secret2, encrypted);
+      decrypt<{ message: string; }>(secret2, encrypted);
     }).to.throw();
   });
 
