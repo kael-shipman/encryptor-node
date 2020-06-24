@@ -13,7 +13,7 @@ npm install --save encryptor-node
 ## Import methods
 
 ```ts
-// As a hole
+// As a whole
 import * as Encryptor from 'encryptor-node';
 
 // Each method
@@ -37,3 +37,33 @@ console.log(encrypted); // e20f64009fe0daa88......
 const result = decrypt(secret, encrypted);
 console.log(result); // { message: 'This is an very important message' }
 ```
+
+## Extra Options
+
+The `encrypt` function takes an additional optional `options` hash consisting of the following:
+
+```ts
+{
+  /**
+   * Optional - define the algorithm used for encryption
+   * @default aes-256-cbc
+   */
+  algorithm?: string;
+
+  /**
+   * Optional - pass your own salt
+   */
+  salt?: string;
+
+  /**
+   * Optional - specify how long the generated salt string should be
+   */
+  saltLength?: number;
+}
+```
+
+This is provided to allow the developer somewhat more control over the internals of the library.
+The `decrypt` function takes an options hash with just the `algorithm` key.
+
+The algorithm must be compatible with the built-in node crypto library.
+
