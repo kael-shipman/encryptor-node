@@ -26,14 +26,14 @@ export const encrypt = (
      * Optional - specify how long the generated salt string should be
      */
     saltLength?: number;
-  }
+  },
 ): string => {
   // Prepare options
   const options = {
     algorithm: ALGORITHM,
     saltLength: 256,
-    ...(opts || {})
-  }
+    ...(opts || {}),
+  };
 
   try {
     const salt = options.salt || crypto.randomBytes(options.saltLength).toString('hex');
@@ -57,12 +57,12 @@ export const encrypt = (
 export const decrypt = <T = unknown>(
   secret: string,
   data: string,
-  opts?: { algorithm?: string; }
+  opts?: { algorithm?: string; },
 ): T => {
   const options = {
     algorithm: ALGORITHM,
-    ...(opts || {})
-  }
+    ...(opts || {}),
+  };
 
   try {
     const decipher = crypto.createDecipher(options.algorithm, secret);
