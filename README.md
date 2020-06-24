@@ -59,6 +59,11 @@ The `encrypt` function takes an additional optional `options` hash consisting of
    * Optional - specify how long the generated salt string should be
    */
   saltLength?: number;
+
+  /**
+   * Optional - return encrypted data as a hex string, rather than a buffer. Defaults to true.
+   */
+  stringify?: boolean;
 }
 ```
 

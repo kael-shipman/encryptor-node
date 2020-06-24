@@ -7,7 +7,27 @@ interface IPayload {
 
 const ALGORITHM = 'aes-256-cbc';
 
-export const encrypt = (
+export function encrypt(
+  secret: string,
+  data: unknown,
+  opts: {
+    algorithm?: string;
+    salt?: string;
+    saltLength?: number;
+    stringify: false;
+  },
+): Buffer;
+export function encrypt(
+  secret: string,
+  data: unknown,
+  opts?: {
+    algorithm?: string;
+    salt?: string;
+    saltLength?: number;
+    stringify?: true;
+  },
+): string;
+export function encrypt(
   secret: string,
   data: unknown,
   opts?: {
@@ -26,12 +46,18 @@ export const encrypt = (
      * Optional - specify how long the generated salt string should be
      */
     saltLength?: number;
+
+    /**
+     * Optional - return encrypted data as a hex string, rather than a buffer. Defaults to true.
+     */
+    stringify?: boolean;
   },
-): string => {
+): string | Buffer {
   // Prepare options
   const options = {
     algorithm: ALGORITHM,
     saltLength: 256,
+    stringify: true,
     ...(opts || {}),
   };
 
@@ -47,16 +73,16 @@ export const encrypt = (
         cipher.update(new Buffer(JSON.stringify(payload), 'utf8')),
         cipher.final(),
       ],
-    ).toString('hex');
-    return encrypted;
+    );
+    return options.stringify !== false ? encrypted.toString('hex') : encrypted;
   } catch (error) {
     throw Error(`Unable to encrypt message: ${error.message}`);
   }
-};
+}
 
 export const decrypt = <T = unknown>(
   secret: string,
-  data: string,
+  data: string | Buffer,
   opts?: { algorithm?: string; },
 ): T => {
   const options = {
@@ -66,7 +92,10 @@ export const decrypt = <T = unknown>(
 
   try {
     const decipher = crypto.createDecipher(options.algorithm, secret);
-    const decrypted = Buffer.concat([decipher.update(new Buffer(data, 'hex')), decipher.final()]);
+    const decrypted = Buffer.concat([
+      decipher.update(Buffer.isBuffer(data) ? data : new Buffer(data, 'hex')),
+      decipher.final(),
+    ]);
     const payload: IPayload = JSON.parse(decrypted.toString());
     return payload.data;
   } catch (error) {
