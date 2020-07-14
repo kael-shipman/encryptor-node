@@ -1,25 +1,25 @@
 {
-  "name": "encryptor-node",
-  "version": "0.1.0",
-  "description": "Library for encrypt and decrypt messages using a secret key.",
+  "name": "@kael-shipman/encryptor-node",
+  "version": "0.2.0",
+  "description": "Library for encrypting and decrypting messages using a secret key.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "node dist/index.js",
-    "start-ts": "./node_modules/ts-node/dist/bin.js src/index.ts",
-    "test": "./node_modules/mocha/bin/mocha -r ./node_modules/ts-node/register/index.js --timeout=20000 'test/**/*.test.ts'",
+    "test": "./node_modules/mocha/bin/mocha -r ./node_modules/ts-node/register/index.js --timeout=20001 'test/**/*.test.ts'",
     "build": "rm -rf dist && tsc --project ./tsconfig.json",
     "clean": "rm -rf dist",
-    "lint": "./node_modules/.bin/tslint --project ./tsconfig.json"
+    "lint": "./node_modules/.bin/tslint --project ./tsconfig.json",
+    "prepublishOnly": "rm -Rf dist && tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cavillo/encryptor-node.git"
+    "url": "git+https://github.com/kael-shipman/encryptor-node.git"
   },
   "keywords": [
     "typescript",
     "encryption"
   ],
-  "author": "cavillo",
+  "contributors": "Various (https://github.com/kael-shipman/encryptor-node/graphs/contributors)",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "4.1.7",
@@ -34,7 +34,7 @@
   },
   "dependencies": {},
   "bugs": {
-    "url": "https://github.com/cavillo/encryptor-node/issues"
+    "url": "https://github.com/kael-shipman/encryptor-node/issues"
   },
-  "homepage": "https://github.com/cavillo/encryptor-node#readme"
+  "homepage": "https://github.com/kael-shipman/encryptor-node#readme"
 }
